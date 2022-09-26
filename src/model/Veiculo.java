@@ -2,24 +2,24 @@ package model;
 
 import util.Contador;
 
-public class Veiculo {
+public class Veiculo implements Banco {
 	
 	private Integer id;
 	private String modelo;
 	private String marca;
 	private String cor;
 	private String placa;
-	private TipoVeiculo tipo;
+	private Tipo tipo;
 	private double valorLocacao;
 	private Status status;
 	
-	private Veiculo(String modelo, String marca, String cor, String placa, String tipo, double valorLocacao) {
+	public Veiculo(String modelo, String marca, String cor, String placa, String tipo, double valorLocacao) {
 		this.id = Contador.proximoId();
 		this.modelo = modelo;
 		this.marca = marca;
 		this.cor = cor;
 		this.placa = placa;
-		this.tipo = TipoVeiculo.valueOf(tipo.toUpperCase());
+		this.tipo = Tipo.valueOf(tipo.toUpperCase());
 		this.valorLocacao = valorLocacao;
 		this.status = Status.LIVRE;
 	}	
@@ -64,11 +64,11 @@ public class Veiculo {
 		this.placa = placa;
 	}
 
-	public TipoVeiculo getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoVeiculo tipo) {
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
@@ -88,7 +88,7 @@ public class Veiculo {
 		this.status = status;
 	}
 
-	private static enum TipoVeiculo {
+	private static enum Tipo {
 		CARRO,
 		MOTO,
 		CAMINHAO;
@@ -99,4 +99,11 @@ public class Veiculo {
 		ALUGADO;
 	}
 
+	@Override
+	public String toString() {
+		return "Veiculo [id=" + id + ", modelo=" + modelo + ", marca=" + marca + ", cor=" + cor + ", placa=" + placa
+				+ ", tipo=" + tipo + ", valorLocacao=" + valorLocacao + ", status=" + status + "]";
+	}
+
+	
 }
