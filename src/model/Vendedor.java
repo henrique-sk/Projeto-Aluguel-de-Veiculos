@@ -1,6 +1,6 @@
 package model;
 
-public class Vendedor extends Pessoa {
+public class Vendedor extends Pessoa implements Banco {
 	
 	private final double COMISSAO = 0.1;
 	private int salario;
