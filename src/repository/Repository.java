@@ -31,9 +31,6 @@ public class Repository <T extends Banco> {
 		this.bancoDeDados.remove(id);
 	}
 
-	@Override
-	public String toString() {
-		return "Repository [bancoDeDados=" + bancoDeDados + "]";
-	}
+	
 	
 }

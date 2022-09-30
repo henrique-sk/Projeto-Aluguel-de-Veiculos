@@ -99,11 +99,4 @@ public class Veiculo implements Banco {
 		ALUGADO;
 	}
 
-	@Override
-	public String toString() {
-		return "Veiculo [id=" + id + ", modelo=" + modelo + ", marca=" + marca + ", cor=" + cor + ", placa=" + placa
-				+ ", tipo=" + tipo + ", valorLocacao=" + valorLocacao + ", status=" + status + "]";
-	}
-
-	
 }
