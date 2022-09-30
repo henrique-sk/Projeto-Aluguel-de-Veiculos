@@ -1,26 +1,34 @@
 import java.util.Scanner;
 
 import menu.Menu;
-import repository.Repository;
+import model.Cliente;
+import service.ClienteService;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		boolean continua = true;
+		ClienteService clienteService = new ClienteService(sc);
 		
+		boolean continua = true;
 		do {
 			Menu.menu1();
 			int opcao1 = sc.nextInt();
+			sc.nextLine();
 			switch(opcao1) {
 				case 1:
 					Menu.menuCliente1();
-					int opcao2 = sc.nextInt();
+					String email = sc.nextLine();
+					Cliente cliente = clienteService.confereEmail(email);
+					System.out.println("Digite a sua senha: ");
+					String senha = sc.nextLine();
+					// teste bool pra conferir senha
+					System.out.println(clienteService.conferirSenha(cliente, senha));
 					break;
 				case 2:
 					Menu.menuVendedor1();
-					opcao2 = sc.nextInt();
+					int opcao2 = sc.nextInt();
 					break;
 				case 3:
 					Menu.menuAdministrador();
