@@ -13,7 +13,7 @@ public class Menu {
 				+ cabecalho
 				+ "1 - Cliente\n"
 				+ "2 - Vendedor\n"
-				+ "2 - Administrador\n"
+				+ "3 - Administrador\n"
 				+ "0 - Para sair do sistema");
 	}
 	
@@ -42,7 +42,7 @@ public class Menu {
 				+ cabecalho
 				+ "1 - Cadastrar um veículo\n"
 				+ "2 - Remover um veículo\n"
-				+ "Cadastrar um vendedor\n"
-				+ "Remover um vendedor");
+				+ "3 - Cadastrar um vendedor\n"
+				+ "4 - Remover um vendedor");
 	}
 }
