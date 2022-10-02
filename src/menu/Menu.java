@@ -19,7 +19,7 @@ public class Menu {
 	
 	public static void menuCliente1() {
 		System.out.println(""
-				+ "Digite seu e-mail: \n");
+				+ "Digite seu e-mail: ");
 	}
 	
 	public static void menuCliente2() {

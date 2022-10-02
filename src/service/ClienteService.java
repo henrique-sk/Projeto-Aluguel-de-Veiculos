@@ -13,6 +13,9 @@ public class ClienteService {
 	
 	public ClienteService(Scanner sc) {
 		this.sc = sc;
+		this.repository.salvar(new Cliente("Henrique", "henrique@henrique.com", "Canoas", "123"));
+		this.repository.salvar(new Cliente("Marlon", "marlon@marlon.com", "Porto Alegre", "123"));
+		this.repository.salvar(new Cliente("Paula", "paula@paula.com", "São Leopoldo", "123"));
 	}
 	
 	public Cliente confereEmail(String email) {
@@ -46,7 +49,7 @@ public class ClienteService {
 		
 		Cliente cliente = new Cliente(nome, email, cidade, senha);
 		
-		repository.salvar(cliente);
+		this.repository.salvar(cliente);
 		
 		return cliente;
 	}
