@@ -23,11 +23,17 @@ public class Main {
 					Menu.menuCliente1();
 					String email = sc.nextLine();
 					Cliente cliente = clienteService.confereEmail(email);
-					System.out.println("Digite a sua senha: ");
-					String senha = sc.nextLine();
-					// teste bool pra conferir senha
-					System.out.println(clienteService.conferirSenha(cliente, senha));
-					break;
+					int senhaCorreta;
+					for (int i = 3; i > 0; i--) {
+						System.out.println("Digite a sua senha: ");
+						String senha = sc.nextLine();
+						if (!clienteService.conferirSenha(cliente, senha)) {
+							System.out.println("Senha incorreta!!");
+						} else {							
+							break;
+						}
+						Menu.menuCliente2();
+					}
 				case 2:
 					Menu.menuVendedor1();
 					int opcao2 = sc.nextInt();
