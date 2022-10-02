@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import menu.Menu;
 import model.Cliente;
+import service.AdminService;
 import service.ClienteService;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		ClienteService clienteService = new ClienteService(sc);
+		AdminService adminService = new AdminService(sc);
 		
 		boolean continua = true;
 		do {
@@ -33,6 +35,7 @@ public class Main {
 				case 3:
 					Menu.menuAdministrador();
 					opcao2 = sc.nextInt();
+					adminService.confereEntrada(opcao2);
 					break;
 				case 0:
 					continua = false;
