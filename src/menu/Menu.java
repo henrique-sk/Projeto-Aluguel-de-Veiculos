@@ -45,4 +45,10 @@ public class Menu {
 				+ "3 - Cadastrar um vendedor\n"
 				+ "4 - Remover um vendedor");
 	}
+	
+	public static void escolherVeiculo() {
+		System.out.println(""
+				+ "--------------------------------------------\n"
+				+ "Digite o número referente ao veívulo desejado:");
+	}
 }

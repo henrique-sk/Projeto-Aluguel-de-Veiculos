@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Cliente;
+import model.Veiculo;
 import repository.Repository;
 
 public class ClienteService {
 	
 	Scanner sc;
+	VeiculoService veiculoService;
 	Repository<Cliente> repository = new Repository<>();
 	
 	public ClienteService(Scanner sc) {
@@ -54,6 +56,9 @@ public class ClienteService {
 		return cliente;
 	}
 	
-	
+	public void alugarVeiculo(Cliente cliente, Veiculo veiculo) {
+		cliente.getVeiculos().add(veiculo);
+		this.repository.salvar(cliente);
+	}
 
 }
