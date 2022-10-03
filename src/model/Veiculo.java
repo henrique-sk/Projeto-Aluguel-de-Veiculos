@@ -87,6 +87,20 @@ public class Veiculo implements Banco {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return this.id
+				+ " - " + this.tipo
+				+ " - " + this.marca
+				+ " " +	this.modelo
+				+ " " +	this.cor
+				+ " - Diária: R$ " +	this.valorLocacao + "0";
+	}
+
+
 
 	private static enum Tipo {
 		CARRO,
@@ -94,7 +108,7 @@ public class Veiculo implements Banco {
 		CAMINHAO;
 	}
 	
-	private static enum Status {
+	public static enum Status {
 		LIVRE,
 		ALUGADO;
 	}

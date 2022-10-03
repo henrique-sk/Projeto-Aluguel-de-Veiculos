@@ -4,15 +4,20 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Cliente;
+import model.Veiculo;
 import repository.Repository;
 
 public class ClienteService {
 	
 	Scanner sc;
+	VeiculoService veiculoService;
 	Repository<Cliente> repository = new Repository<>();
 	
 	public ClienteService(Scanner sc) {
 		this.sc = sc;
+		this.repository.salvar(new Cliente("Henrique", "henrique@henrique.com", "Canoas", "123"));
+		this.repository.salvar(new Cliente("Marlon", "marlon@marlon.com", "Porto Alegre", "123"));
+		this.repository.salvar(new Cliente("Paula", "paula@paula.com", "São Leopoldo", "123"));
 	}
 	
 	public Cliente confereEmail(String email) {
@@ -46,11 +51,14 @@ public class ClienteService {
 		
 		Cliente cliente = new Cliente(nome, email, cidade, senha);
 		
-		repository.salvar(cliente);
+		this.repository.salvar(cliente);
 		
 		return cliente;
 	}
 	
-	
+	public void alugarVeiculo(Cliente cliente, Veiculo veiculo) {
+		cliente.getVeiculos().add(veiculo);
+		this.repository.salvar(cliente);
+	}
 
 }

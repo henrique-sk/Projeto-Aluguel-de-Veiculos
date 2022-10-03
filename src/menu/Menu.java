@@ -19,7 +19,7 @@ public class Menu {
 	
 	public static void menuCliente1() {
 		System.out.println(""
-				+ "Digite seu e-mail: \n");
+				+ "Digite seu e-mail: ");
 	}
 	
 	public static void menuCliente2() {
@@ -44,5 +44,11 @@ public class Menu {
 				+ "2 - Remover um veículo\n"
 				+ "3 - Cadastrar um vendedor\n"
 				+ "4 - Remover um vendedor");
+	}
+	
+	public static void escolherVeiculo() {
+		System.out.println(""
+				+ "--------------------------------------------\n"
+				+ "Digite o número referente ao veívulo desejado:");
 	}
 }
