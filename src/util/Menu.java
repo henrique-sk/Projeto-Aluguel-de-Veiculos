@@ -1,4 +1,4 @@
-package menu;
+package util;
 
 public class Menu {
 
