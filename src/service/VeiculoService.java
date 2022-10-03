@@ -57,4 +57,14 @@ public class VeiculoService {
 		
 		return veiculo;
 	}
+	
+	public Veiculo devolverVeiculo(int id) {
+		Veiculo veiculo = this.repository.buscarPorId(id);
+		
+		veiculo.setStatus(Status.LIVRE);
+		
+		this.repository.salvar(veiculo);
+		
+		return veiculo;
+	}
 }

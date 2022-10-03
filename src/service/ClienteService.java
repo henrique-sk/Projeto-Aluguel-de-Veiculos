@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import model.Cliente;
 import model.Veiculo;
+import model.Veiculo.Status;
 import repository.Repository;
 
 public class ClienteService {
@@ -59,6 +60,20 @@ public class ClienteService {
 	public void alugarVeiculo(Cliente cliente, Veiculo veiculo) {
 		cliente.getVeiculos().add(veiculo);
 		this.repository.salvar(cliente);
+	}
+	
+	public void buscarVeiculosAlugados(Cliente cliente) {
+		List<Veiculo> todosVeiculos = cliente.getVeiculos();
+		
+		todosVeiculos.stream().forEach(veiculo -> System.out.println(veiculo));
+	}
+	
+	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
+		Cliente cliente  =  this.repository.buscarPorId(clienteParam.getId());
+		
+		cliente.getVeiculos().remove(veiculoParam);
+
+		this.repository.salvar(cliente);	
 	}
 
 }

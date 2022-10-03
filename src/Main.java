@@ -43,8 +43,15 @@ public class Main {
 					Menu.menuCliente2();
 					int opcaoCliente = sc.nextInt();
 					if (opcaoCliente == 1) {
-						Menu.escolherVeiculo();
+						Menu.listaVeiculos();
 						veiculoService.buscarTodosVeiculosLivres();
+					} else if (opcaoCliente == 2) {
+						Menu.listaVeiculos();
+						clienteService.buscarVeiculosAlugados(cliente);
+						int carroEscolhido = sc.nextInt();
+						Veiculo veiculo = veiculoService.devolverVeiculo(carroEscolhido);
+						clienteService.removerVeiculo(cliente, veiculo);
+						break;
 					}
 					int veiculoID = sc.nextInt();
 					Veiculo veiculo = veiculoService.alugarVeiculoPorID(veiculoID);

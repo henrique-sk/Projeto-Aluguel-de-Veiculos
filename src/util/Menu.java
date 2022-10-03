@@ -46,7 +46,7 @@ public class Menu {
 				+ "4 - Remover um vendedor");
 	}
 	
-	public static void escolherVeiculo() {
+	public static void listaVeiculos() {
 		System.out.println(""
 				+ "--------------------------------------------\n"
 				+ "Digite o número referente ao veívulo desejado:");
