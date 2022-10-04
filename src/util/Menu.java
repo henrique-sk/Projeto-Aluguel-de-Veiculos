@@ -17,7 +17,7 @@ public class Menu {
 				+ "0 - Para sair do sistema");
 	}
 	
-	public static void menuCliente1() {
+	public static void menu2() {
 		System.out.println(""
 				+ "Digite seu e-mail: ");
 	}
@@ -46,7 +46,7 @@ public class Menu {
 				+ "4 - Remover um vendedor");
 	}
 	
-	public static void escolherVeiculo() {
+	public static void listaVeiculos() {
 		System.out.println(""
 				+ "--------------------------------------------\n"
 				+ "Digite o número referente ao veívulo desejado:");

@@ -10,7 +10,6 @@ import repository.Repository;
 public class ClienteService {
 	
 	Scanner sc;
-	VeiculoService veiculoService;
 	Repository<Cliente> repository = new Repository<>();
 	
 	public ClienteService(Scanner sc) {
@@ -35,7 +34,7 @@ public class ClienteService {
 	}
 	
 	public boolean conferirSenha(Cliente clienteParam, String senha) {
-		Cliente cliente  =  repository.buscarPorId(clienteParam.getId());
+		Cliente cliente = repository.buscarPorId(clienteParam.getId());
 		
 		return cliente.getSenha().equals(senha);
 	}
@@ -59,6 +58,20 @@ public class ClienteService {
 	public void alugarVeiculo(Cliente cliente, Veiculo veiculo) {
 		cliente.getVeiculos().add(veiculo);
 		this.repository.salvar(cliente);
+	}
+	
+	public void buscarVeiculosAlugados(Cliente cliente) {
+		List<Veiculo> veiculosAlugados = cliente.getVeiculos();
+		
+		veiculosAlugados.stream().forEach(veiculo -> System.out.println(veiculo));
+	}
+	
+	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
+		Cliente cliente  =  this.repository.buscarPorId(clienteParam.getId());
+		
+		cliente.getVeiculos().remove(veiculoParam);
+
+		this.repository.salvar(cliente);	
 	}
 
 }

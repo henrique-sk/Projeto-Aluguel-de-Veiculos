@@ -10,6 +10,7 @@ public class AdminService {
 	
 	Scanner sc;
 	VeiculoService veiculoService;
+	VendedorService vendedorService;
 	Repository<Administrador> repository = new Repository<>();
 		
 	public AdminService(Scanner sc, VeiculoService veiculoService) {
