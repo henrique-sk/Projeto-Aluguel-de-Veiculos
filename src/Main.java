@@ -2,9 +2,11 @@ import java.util.Scanner;
 
 import model.Cliente;
 import model.Veiculo;
+import model.Vendedor;
 import service.AdminService;
 import service.ClienteService;
 import service.VeiculoService;
+import service.VendedorService;
 import util.Menu;
 
 public class Main {
@@ -14,6 +16,7 @@ public class Main {
 		
 		ClienteService clienteService = new ClienteService(sc);
 		VeiculoService veiculoService = new VeiculoService(sc);
+		VendedorService vendedorService = new VendedorService(sc);
 		AdminService adminService = new AdminService(sc, veiculoService);
 		
 		boolean continua = true;
@@ -23,7 +26,7 @@ public class Main {
 			sc.nextLine();
 			switch(opcao1) {
 				case 1:
-					Menu.menuCliente1();
+					Menu.menu2();
 					String email = sc.nextLine();
 					Cliente cliente = clienteService.confereEmail(email);
 					boolean senhaCorreta = false;
@@ -48,9 +51,9 @@ public class Main {
 					} else if (opcaoCliente == 2) {
 						Menu.listaVeiculos();
 						clienteService.buscarVeiculosAlugados(cliente);
-						int carroEscolhido = sc.nextInt();
-						Veiculo veiculo = veiculoService.devolverVeiculo(carroEscolhido);
-						clienteService.removerVeiculo(cliente, veiculo);
+						int opcaoVeiculo = sc.nextInt();
+						Veiculo veiculoDevolvido = veiculoService.devolverVeiculo(opcaoVeiculo);
+						clienteService.removerVeiculo(cliente, veiculoDevolvido);
 						break;
 					}
 					int veiculoID = sc.nextInt();
@@ -58,8 +61,30 @@ public class Main {
 					clienteService.alugarVeiculo(cliente, veiculo);
 					break;
 				case 2:
+					Menu.menu2();
+					email = sc.nextLine();
+					Vendedor vendedor = vendedorService.confereEmail(email);
+					senhaCorreta = false;
+					for (int i = 3; i > 0; i--) {
+						System.out.println("Digite a sua senha: ");
+						String senha = sc.nextLine();
+						senhaCorreta = vendedorService.conferirSenha(vendedor, senha);
+						if (!senhaCorreta) {
+							System.out.println("Senha incorreta!!");
+						} else {							
+							break;
+						}
+					}
+					if(!senhaCorreta) {
+						break;
+					}	
 					Menu.menuVendedor1();
 					int opcao2 = sc.nextInt();
+					if (opcao2 == 1) {
+						
+					} else if (opcao2 == 2) {
+						vendedorService.verSalario(vendedor);
+					}
 					break;
 				case 3:
 					Menu.menuAdministrador();

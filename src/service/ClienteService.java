@@ -5,13 +5,11 @@ import java.util.Scanner;
 
 import model.Cliente;
 import model.Veiculo;
-import model.Veiculo.Status;
 import repository.Repository;
 
 public class ClienteService {
 	
 	Scanner sc;
-	VeiculoService veiculoService;
 	Repository<Cliente> repository = new Repository<>();
 	
 	public ClienteService(Scanner sc) {
@@ -36,7 +34,7 @@ public class ClienteService {
 	}
 	
 	public boolean conferirSenha(Cliente clienteParam, String senha) {
-		Cliente cliente  =  repository.buscarPorId(clienteParam.getId());
+		Cliente cliente = repository.buscarPorId(clienteParam.getId());
 		
 		return cliente.getSenha().equals(senha);
 	}
@@ -63,9 +61,9 @@ public class ClienteService {
 	}
 	
 	public void buscarVeiculosAlugados(Cliente cliente) {
-		List<Veiculo> todosVeiculos = cliente.getVeiculos();
+		List<Veiculo> veiculosAlugados = cliente.getVeiculos();
 		
-		todosVeiculos.stream().forEach(veiculo -> System.out.println(veiculo));
+		veiculosAlugados.stream().forEach(veiculo -> System.out.println(veiculo));
 	}
 	
 	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
