@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
+				
 		ClienteService clienteService = new ClienteService(sc);
 		VeiculoService veiculoService = new VeiculoService(sc);
 		VendedorService vendedorService = new VendedorService(sc);
@@ -47,7 +47,7 @@ public class Main {
 					int opcaoCliente = sc.nextInt();
 					if (opcaoCliente == 1) {
 						Menu.listaVeiculos();
-						veiculoService.buscarTodosVeiculosLivres();
+						veiculoService.buscarTodosVeiculosLivres();				
 					} else if (opcaoCliente == 2) {
 						Menu.listaVeiculos();
 						clienteService.buscarVeiculosAlugados(cliente);
@@ -59,6 +59,12 @@ public class Main {
 					int veiculoID = sc.nextInt();
 					Veiculo veiculo = veiculoService.alugarVeiculoPorID(veiculoID);
 					clienteService.alugarVeiculo(cliente, veiculo);
+					Menu.listaVendedores();
+					vendedorService.todosVendedores();
+					int vendedorID = sc.nextInt();
+					vendedorService.salvarVeiculo(veiculo, vendedorID);
+					
+					
 					break;
 				case 2:
 					Menu.menu2();
@@ -81,7 +87,8 @@ public class Main {
 					Menu.menuVendedor1();
 					int opcao2 = sc.nextInt();
 					if (opcao2 == 1) {
-						
+						System.out.println("Estes são os veículos: ");
+						vendedorService.mostrarAlugueisVeiculos(vendedor);
 					} else if (opcao2 == 2) {
 						vendedorService.verSalario(vendedor);
 					}
