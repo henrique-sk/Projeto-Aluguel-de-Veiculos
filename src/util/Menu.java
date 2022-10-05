@@ -6,7 +6,7 @@ public class Menu {
 			+ "--------------------------------------------\n"
 			+ "Digite a opção desejada:\n";
 	
-	public static void menu1() {
+	public static final void menu1() {
 		System.out.println(""
 				+ "============================================\n"
 				+ "Bem-vindo ao sistema de aluguel de veículos!\n"
@@ -17,19 +17,19 @@ public class Menu {
 				+ "0 - Para sair do sistema");
 	}
 	
-	public static void menu2() {
+	public static final void menu2() {
 		System.out.println(""
 				+ "Digite seu e-mail: ");
 	}
 	
-	public static void menuCliente2() {
+	public static final void menuCliente2() {
 		System.out.println(""
 				+ cabecalho
 				+ "1 - Alugar um veículo\n"
 				+ "2 - Devolver um veículo");
 	}
 	
-	public static void menuVendedor1() {
+	public static final void menuVendedor1() {
 		System.out.println(""
 				+ cabecalho
 				+ "1 - Ver os veículos que você alugou\n"
@@ -37,7 +37,7 @@ public class Menu {
 				+ "3 - Ver seu salário com a comissão atual");
 	}
 	
-	public static void menuAdministrador() {
+	public static final void menuAdministrador() {
 		System.out.println(""
 				+ cabecalho
 				+ "1 - Cadastrar um veículo\n"
@@ -46,9 +46,15 @@ public class Menu {
 				+ "4 - Remover um vendedor");
 	}
 	
-	public static void listaVeiculos() {
+	public static final void listaVeiculos() {
 		System.out.println(""
 				+ "--------------------------------------------\n"
 				+ "Digite o número referente ao veívulo desejado:");
+	}
+	
+	public static final void listaVendedores() {
+		System.out.println(""
+				+ "--------------------------------------------\n"
+				+ "Digite o número referente ao vendedor que lhe atendeu:");
 	}
 }
