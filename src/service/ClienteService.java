@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.Cliente;
 import model.Veiculo;
 import repository.Repository;
+import util.Normaliza;
 
 public class ClienteService {
 	
@@ -23,7 +24,7 @@ public class ClienteService {
 		List<Cliente> clientesCadastrados = repository.buscarTodos();
 		
 		Cliente cliente = clientesCadastrados.stream()
-				.filter(c -> c.getEmail().equals(email))
+				.filter(c -> c.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
 		if (cliente != null) {

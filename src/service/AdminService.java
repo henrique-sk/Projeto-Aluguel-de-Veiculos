@@ -7,6 +7,7 @@ import model.Administrador;
 import model.Veiculo;
 import model.Vendedor;
 import repository.Repository;
+import util.Normaliza;
 
 public class AdminService {
 	
@@ -40,7 +41,7 @@ public class AdminService {
 		List<Administrador> administradoresCadastrados = repository.buscarTodos();
 		
 		Administrador administrador = administradoresCadastrados.stream()
-				.filter(admin -> admin.getEmail().equals(email))
+				.filter(admin -> admin.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
 		if (administrador != null) {

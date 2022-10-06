@@ -7,6 +7,7 @@ import model.Cliente;
 import model.Veiculo;
 import model.Vendedor;
 import repository.Repository;
+import util.Normaliza;
 
 public class VendedorService {
 	
@@ -24,7 +25,7 @@ public class VendedorService {
 		List<Vendedor> vendedoresCadastrados = repository.buscarTodos();
 		
 		Vendedor vendedor = vendedoresCadastrados.stream()
-				.filter(c -> c.getEmail().equals(email))
+				.filter(v -> v.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
 		if (vendedor != null) {
