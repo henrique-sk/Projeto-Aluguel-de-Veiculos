@@ -43,7 +43,7 @@ public class VendedorService {
 		System.out.println("Seu salário atual é R$ " + vendedor.getSalario() + "0.");
 	}
 	
-	public void todosVendedores() {
+	public void mostrarTodosVendedores() {
 		List<Vendedor> vendedores = this.repository.buscarTodos();
 		
 		vendedores.stream().forEach(vendedor ->
@@ -60,7 +60,37 @@ public class VendedorService {
 	public void mostrarAlugueisVeiculos(Vendedor vendedor) {
 		List<Veiculo> veiculosAlugados = vendedor.getVeiculosAlugados();
 		
+		System.out.println("Estes são os veículos: ");
 		veiculosAlugados.stream().forEach(veiculo ->
 			System.out.println(veiculo));
+	}
+	
+	public void verSalarioComComissao(Vendedor vendedor) {		
+		List<Veiculo> veiculos = vendedor.getVeiculosAlugados();
+		
+		double totalAlugueis = veiculos.stream().mapToDouble(veiculo -> veiculo.getValorLocacao()).sum();		
+		double comissao = totalAlugueis * Vendedor.COMISSAO;
+		
+		System.out.printf("--------------------------------------------\n"
+				+ "Seu salário é R$ %.2f\n", vendedor.getSalario());
+		System.out.printf("Sua comissão é R$ %.2f\n", comissao);
+		System.out.printf("Seu salário mais comissão é R$ %.2f\n", (vendedor.getSalario() + comissao));
+	}
+	
+	public void cadastrarVendedor() {
+		System.out.println("Digite seu nome: ");
+		String nome = sc.nextLine();
+		System.out.println("Digite seu e-mail: ");
+		String email = sc.nextLine();
+		System.out.println("Digite sua cidade: ");
+		String cidade = sc.nextLine();
+		System.out.println("Digite uma senha: ");
+		String senha = sc.nextLine();
+		System.out.println("Digite o salário: ");
+		double salario = sc.nextDouble();
+		
+		Vendedor vendedor = new Vendedor(nome, email, cidade, senha, salario);
+		
+		repository.salvar(vendedor);
 	}
 }
