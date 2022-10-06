@@ -87,10 +87,11 @@ public class Main {
 					Menu.menuVendedor1();
 					int opcao2 = sc.nextInt();
 					if (opcao2 == 1) {
-						System.out.println("Estes são os veículos: ");
 						vendedorService.mostrarAlugueisVeiculos(vendedor);
 					} else if (opcao2 == 2) {
 						vendedorService.verSalario(vendedor);
+					} else if (opcao2 == 3) {
+						vendedorService.verSalarioComComissao(vendedor);
 					}
 					break;
 				case 3:

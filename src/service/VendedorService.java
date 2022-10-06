@@ -60,7 +60,20 @@ public class VendedorService {
 	public void mostrarAlugueisVeiculos(Vendedor vendedor) {
 		List<Veiculo> veiculosAlugados = vendedor.getVeiculosAlugados();
 		
+		System.out.println("Estes são os veículos: ");
 		veiculosAlugados.stream().forEach(veiculo ->
 			System.out.println(veiculo));
+	}
+	
+	public void verSalarioComComissao(Vendedor vendedor) {		
+		List<Veiculo> veiculos = vendedor.getVeiculosAlugados();
+		
+		double totalAlugueis = veiculos.stream().mapToDouble(veiculo -> veiculo.getValorLocacao()).sum();		
+		double comissao = totalAlugueis * Vendedor.COMISSAO;
+		
+		System.out.printf("--------------------------------------------\n"
+				+ "Seu salário é R$ %.2f\n", vendedor.getSalario());
+		System.out.printf("Sua comissão é R$ %.2f\n", comissao);
+		System.out.printf("Seu salário mais comissão é R$ %.2f\n", (vendedor.getSalario() + comissao));
 	}
 }
