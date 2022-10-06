@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 import java.util.Scanner;
 
+import exception.SistemaException;
 import model.Administrador;
 import model.Veiculo;
 import model.Vendedor;
@@ -24,10 +25,10 @@ public class AdminService {
 		this.vendedorService = vendedorService;
 	}
 	
-	public void confereEntrada(int entrada) {
+	public void confereEntrada(int entrada) throws SistemaException {
 		sc.nextLine();
 		if (entrada == 1) {
-			this.veiculoService.cadastrarVeiculo();
+			veiculoService.cadastrarVeiculo();
 		} else if(entrada == 2) {
 			this.removerVeiculo();
 		} else if (entrada == 3) {
@@ -56,21 +57,29 @@ public class AdminService {
 		return administrador.getSenha().equals(senha);
 	}
 	
-	public void removerVeiculo() {
+	public void removerVeiculo() throws SistemaException {
 		System.out.println("Todos veículos cadastrados e livres no sistema: ");
 		veiculoService.buscarTodosVeiculosLivres();
+		int veiculoID = sc.nextInt();
 		
-		int veiculoID = sc.nextInt();			
+		Veiculo veiculo = veiculoService.repository.buscarPorId(veiculoID);
+		if(veiculo == null) {
+			throw new SistemaException("Veículo não encontrado!");
+		}		
 		veiculoService.repository.removerPorId(veiculoID);
 
 		System.out.println("Veículo removido com sucesso!");
 	}
 	
-	public void removerVendedor() {
+	public void removerVendedor() throws SistemaException {
 		System.out.println("Todos vendedores cadastrados no sistema: ");
-		vendedorService.mostrarTodosVendedores();
+		vendedorService.mostrarTodosVendedores();		
+		int vendedorID = sc.nextInt();
 		
-		int vendedorID = sc.nextInt();			
+		Vendedor vendedor = vendedorService.repository.buscarPorId(vendedorID);
+		if(vendedor == null) {
+			throw new SistemaException("Vendedor não encontrado!");
+		}	
 		vendedorService.repository.removerPorId(vendedorID);
 
 		System.out.println("Vendedor removido com sucesso!");
