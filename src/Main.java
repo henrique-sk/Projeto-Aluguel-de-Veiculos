@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import model.Administrador;
 import model.Cliente;
 import model.Veiculo;
 import model.Vendedor;
@@ -17,7 +18,7 @@ public class Main {
 		ClienteService clienteService = new ClienteService(sc);
 		VeiculoService veiculoService = new VeiculoService(sc);
 		VendedorService vendedorService = new VendedorService(sc);
-		AdminService adminService = new AdminService(sc, veiculoService);
+		AdminService adminService = new AdminService(sc, veiculoService, vendedorService);
 		
 		boolean continua = true;
 		do {
@@ -60,7 +61,7 @@ public class Main {
 					Veiculo veiculo = veiculoService.alugarVeiculoPorID(veiculoID);
 					clienteService.alugarVeiculo(cliente, veiculo);
 					Menu.listaVendedores();
-					vendedorService.todosVendedores();
+					vendedorService.mostrarTodosVendedores();
 					int vendedorID = sc.nextInt();
 					vendedorService.salvarVeiculo(veiculo, vendedorID);
 					
@@ -95,6 +96,23 @@ public class Main {
 					}
 					break;
 				case 3:
+					Menu.menu2();
+					email = sc.nextLine();
+					Administrador administrador = adminService.confereEmail(email);
+					senhaCorreta = false;
+					for (int i = 3; i > 0; i--) {
+						System.out.println("Digite a sua senha: ");
+						String senha = sc.nextLine();
+						senhaCorreta = adminService.conferirSenha(administrador, senha);
+						if (!senhaCorreta) {
+							System.out.println("Senha incorreta!!");
+						} else {							
+							break;
+						}
+					}
+					if(!senhaCorreta) {
+						break;
+					}	
 					Menu.menuAdministrador();
 					opcao2 = sc.nextInt();
 					adminService.confereEntrada(opcao2);
