@@ -3,10 +3,12 @@ package service;
 import java.util.List;
 import java.util.Scanner;
 
+import exception.SistemaException;
 import model.Cliente;
 import model.Veiculo;
 import model.Vendedor;
 import repository.Repository;
+import util.Normaliza;
 
 public class VendedorService {
 	
@@ -24,7 +26,7 @@ public class VendedorService {
 		List<Vendedor> vendedoresCadastrados = repository.buscarTodos();
 		
 		Vendedor vendedor = vendedoresCadastrados.stream()
-				.filter(c -> c.getEmail().equals(email))
+				.filter(v -> v.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
 		if (vendedor != null) {
@@ -50,8 +52,12 @@ public class VendedorService {
 			System.out.println(vendedor.getId() + " - " + vendedor.getNome()));
 	}
 	
-	public void salvarVeiculo(Veiculo veiculo, Integer idVendedor) {
+	public void salvarVeiculo(Veiculo veiculo, Integer idVendedor) throws SistemaException {
 		Vendedor vendedor = repository.buscarPorId(idVendedor);
+		
+		if(vendedor == null) {
+			throw new SistemaException("Vendedor não encontrado!");
+		}
 		
 		vendedor.getVeiculosAlugados().add(veiculo);		
 		repository.salvar(vendedor);
@@ -72,9 +78,10 @@ public class VendedorService {
 		double comissao = totalAlugueis * Vendedor.COMISSAO;
 		
 		System.out.printf("--------------------------------------------\n"
-				+ "Seu salário é R$ %.2f\n", vendedor.getSalario());
-		System.out.printf("Sua comissão é R$ %.2f\n", comissao);
-		System.out.printf("Seu salário mais comissão é R$ %.2f\n", (vendedor.getSalario() + comissao));
+				+ "Seu salário é R$ %.2f\n"
+				+ "Sua comissão é R$ %.2f\n"
+				+ "Seu salário mais comissão é R$ %.2f\n"
+				, vendedor.getSalario(), comissao, (vendedor.getSalario() + comissao));
 	}
 	
 	public void cadastrarVendedor() {

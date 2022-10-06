@@ -3,9 +3,11 @@ package service;
 import java.util.List;
 import java.util.Scanner;
 
+import exception.SistemaException;
 import model.Cliente;
 import model.Veiculo;
 import repository.Repository;
+import util.Normaliza;
 
 public class ClienteService {
 	
@@ -23,7 +25,7 @@ public class ClienteService {
 		List<Cliente> clientesCadastrados = repository.buscarTodos();
 		
 		Cliente cliente = clientesCadastrados.stream()
-				.filter(c -> c.getEmail().equals(email))
+				.filter(c -> c.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
 		if (cliente != null) {
@@ -66,9 +68,12 @@ public class ClienteService {
 		veiculosAlugados.stream().forEach(veiculo -> System.out.println(veiculo));
 	}
 	
-	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) {
+	public void removerVeiculo(Cliente clienteParam, Veiculo veiculoParam) throws SistemaException {
 		Cliente cliente  =  this.repository.buscarPorId(clienteParam.getId());
 		
+		if(cliente == null) {
+			throw new SistemaException("Cliente não encontrado!");
+		}
 		cliente.getVeiculos().remove(veiculoParam);
 
 		this.repository.salvar(cliente);	
