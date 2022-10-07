@@ -29,9 +29,6 @@ public class VendedorService {
 				.filter(v -> v.getEmail().equals(Normaliza.normalizaEmail(email)))
 				.findFirst().orElse(null);
 		
-		if (vendedor != null) {
-			return vendedor;
-		}
 		return vendedor;
 	}
 
@@ -63,8 +60,12 @@ public class VendedorService {
 		repository.salvar(vendedor);
 	}
 	
-	public void mostrarAlugueisVeiculos(Vendedor vendedor) {
+	public void mostrarAlugueisVeiculos(Vendedor vendedor) throws SistemaException {
 		List<Veiculo> veiculosAlugados = vendedor.getVeiculosAlugados();
+		
+		if(veiculosAlugados.size() <= 0) {
+			throw new SistemaException("Você não possui veículos alugados!");
+		}
 		
 		System.out.println("Estes são os veículos: ");
 		veiculosAlugados.stream().forEach(veiculo ->

@@ -66,7 +66,6 @@ public class VeiculoService {
 	public Veiculo devolverVeiculo(Cliente cliente, int id) throws SistemaException {
 		Veiculo veiculo = this.repository.buscarPorId(id);
 		
-		
 		if(veiculo == null || !cliente.getVeiculos().contains(veiculo)) {
 			throw new SistemaException("Veículo não encontrado!");
 		}		
